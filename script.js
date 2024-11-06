@@ -20,7 +20,7 @@ function makeGrid(div) {
 
 function addColorEffect(container) {
     let isHolding = false;
-    container.addEventListener('mousedown', () =>{
+    container.addEventListener('mousedown', (e) =>{
         isHolding = true;
         if (e.target.classList.contains('block') && isHolding)
             color(e.target);

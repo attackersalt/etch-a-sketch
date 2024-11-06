@@ -18,6 +18,10 @@ function makeGrid(div) {
     }
 }
 
+function setColor(color) {
+    element_color = color;
+}
+
 function addColorEffect(container) {
     let isHolding = false;
     container.addEventListener('mousedown', (e) =>{
@@ -45,10 +49,29 @@ function hover(pixel) {
 }
 
 function color(pixel) {
-    pixel.classList.add('colored');
+    if (!rgbOn)
+        pixel.style.background = element_color;
+    else {
+        pixel.style.background = 
+`rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+    }
 }
 
 // vars and stuff
 
+let element_color = "black";
+let rgbOn = false;
+
+const applyColorButton = document.querySelector("#apply-color");
+const colorInput = document.querySelector("#color")
 const container = document.querySelector("#container");
+const rgbMode = document.querySelector("#rgb-mode");
 makeGrid(container);
+
+rgbMode.addEventListener('click', () => {
+    rgbOn = rgbOn ? false : true;
+})
+
+applyColorButton.addEventListener('click', () => {
+    setColor(colorInput.value)
+})

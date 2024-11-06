@@ -5,15 +5,15 @@
     display: flex;
     flex-wrap: wrap;
 }
-
+/* 
 .block {
     outline: 1px solid black;
-}
+} */
 
 .hovered {
     background: rgb(0, 0, 0, 0.5);
 }
-
+/* 
 .colored {
     background: red;
-}
+} */

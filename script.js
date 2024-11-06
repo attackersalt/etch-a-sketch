@@ -22,17 +22,15 @@ function addColorEffect(container) {
     let isHolding = false;
     container.addEventListener('mousedown', () =>{
         isHolding = true;
-        //console.log("rf1:", isHolding);
+        if (e.target.classList.contains('block') && isHolding)
+            color(e.target);
     });
     container.addEventListener('mouseup', () => {
         isHolding = false;
-        //console.log("rf2:", isHolding);
     })
     container.addEventListener('mouseover', e => {
-        //console.log("rf4:", e.target, isHolding)
         if (e.target.classList.contains('block') && isHolding) {
             color(e.target);
-            //console.log("rf3:", isHolding);
         }
     })
 }

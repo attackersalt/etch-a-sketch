@@ -4,14 +4,15 @@ const CONTAINER_HEIGHT = 500;
 
 // functions and stuff
 
-function makeGrid(div) {
+function makeGrid(div, size) {
+    div.innerHTML = "";
     div.style.height = CONTAINER_HEIGHT;
     div.style.width = CONTAINER_HEIGHT; // square
-    for (let i = 0; i < 16 ** 2; i++) {
+    for (let i = 0; i < size ** 2; i++) {
         const el = document.createElement("div");
         el.classList.add("block");
-        el.style.width = CONTAINER_HEIGHT / 16 + "px";
-        el.style.height = CONTAINER_HEIGHT / 16 + "px";
+        el.style.width = CONTAINER_HEIGHT / size + "px";
+        el.style.height = CONTAINER_HEIGHT / size + "px";
         div.appendChild(el);
         addHoverEffect(el);
         addColorEffect(div);
@@ -66,8 +67,20 @@ const applyColorButton = document.querySelector("#apply-color");
 const colorInput = document.querySelector("#color")
 const container = document.querySelector("#container");
 const rgbMode = document.querySelector("#rgb-mode");
-makeGrid(container);
+const changeGrid = document.querySelector("#change-grid");
 
+
+makeGrid(container, 16);
+
+
+changeGrid.addEventListener('click', () => {
+    const size = prompt("how big should be ur new grid? (2-128)");
+    if (Number.isInteger(+size) && +size >= 2 && +size <= 128) {
+        makeGrid(container, +size);
+    } else {
+        alert("invalid choice, try again");
+    }
+})
 rgbMode.addEventListener('click', () => {
     rgbOn = rgbOn ? false : true;
 })
